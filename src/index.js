@@ -33,12 +33,17 @@ app.engine(
   }),
 );
 app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'resources/views'));
+app.set('views', path.join(__dirname, 'resources', 'views'));
 
 //route
 const route = require('./routes');
 route(app);
 
+//connect database
+const db = require('./config/db');
+db.connect();
+
+//get method
 app.get('/', (req, res) => {
   return res.render('home');
 });
